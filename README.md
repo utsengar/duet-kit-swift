@@ -26,7 +26,7 @@ Add DuetKit to your project via Swift Package Manager:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/utsengar/duet-kit-swift", from: "1.0.0")
+    .package(url: "https://github.com/utsengar/DuetKit-Swift", from: "1.0.0")
 ]
 ```
 
