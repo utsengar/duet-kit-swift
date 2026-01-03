@@ -1,5 +1,5 @@
 //
-//  main.swift
+//  DuetCLI.swift
 //  DuetCLI
 //
 //  A command-line tool to try out Duet's Schema and Document system.
@@ -14,6 +14,29 @@
 
 import Foundation
 import Duet
+
+// MARK: - Entry Point
+
+@main
+struct DuetCLI {
+    static func main() {
+        let args = CommandLine.arguments
+        
+        if args.contains("--help") || args.contains("-h") {
+            printHeader()
+            printHelp()
+        } else if args.contains("--budget") {
+            printHeader()
+            runInteractiveMode(schema: budgetSchema)
+        } else if args.contains("--fitness") {
+            printHeader()
+            runInteractiveMode(schema: fitnessSchema)
+        } else {
+            // Default to demo mode
+            runDemo()
+        }
+    }
+}
 
 // MARK: - CLI Storage (in-memory for CLI)
 
@@ -260,23 +283,5 @@ func runDemo() {
     
     print("\nUsing schema: \(schema.name)\n")
     runInteractiveMode(schema: schema)
-}
-
-// MARK: - Main
-
-let args = CommandLine.arguments
-
-if args.contains("--help") || args.contains("-h") {
-    printHeader()
-    printHelp()
-} else if args.contains("--budget") {
-    printHeader()
-    runInteractiveMode(schema: budgetSchema)
-} else if args.contains("--fitness") {
-    printHeader()
-    runInteractiveMode(schema: fitnessSchema)
-} else {
-    // Default to demo mode
-    runDemo()
 }
 
